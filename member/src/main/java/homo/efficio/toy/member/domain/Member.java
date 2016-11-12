@@ -31,6 +31,17 @@ public class Member {
         this.status = status;
     }
 
+    public Member(Long id, String userName, String email, Status status) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getUserName() {
         return userName;
     }
