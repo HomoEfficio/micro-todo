@@ -23,7 +23,15 @@ public class Member {
     @NotNull
     private String email;
 
-    private Status status;
+    private Status status = Status.ACTIVE;
+
+    public Member() {
+    }
+
+    public Member(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
 
     public Member(String userName, String email, Status status) {
         this.userName = userName;

@@ -2,12 +2,14 @@ package homo.efficio.toy.member.dto;
 
 import homo.efficio.toy.member.domain.Member;
 import homo.efficio.toy.member.exception.MemberNotFoundException;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 /**
  * Created by hanmomhanda on 2016-11-13.
  */
+@Component
 public class MemberConverter {
 
     public Member getMemberFrom(MemberDto i) {
