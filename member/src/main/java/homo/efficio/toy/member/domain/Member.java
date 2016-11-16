@@ -2,16 +2,14 @@ package homo.efficio.toy.member.domain;
 
 import homo.efficio.toy.member.etc.code.Status;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by hanmomhanda on 2016-11-13.
  */
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -23,7 +21,8 @@ public class Member {
     @NotNull
     private String email;
 
-    private Status status = Status.ACTIVE;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Member() {
         this.status = Status.ACTIVE;
