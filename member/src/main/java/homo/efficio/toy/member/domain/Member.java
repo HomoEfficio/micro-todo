@@ -4,12 +4,13 @@ import homo.efficio.toy.member.etc.code.Status;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by hanmomhanda on 2016-11-13.
  */
 @Entity
-public class Member extends BaseEntity {
+public class Member extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
