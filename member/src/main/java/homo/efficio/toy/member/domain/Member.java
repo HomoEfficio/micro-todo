@@ -26,11 +26,13 @@ public class Member {
     private Status status = Status.ACTIVE;
 
     public Member() {
+        this.status = Status.ACTIVE;
     }
 
     public Member(String userName, String email) {
         this.userName = userName;
         this.email = email;
+        this.status = Status.ACTIVE;
     }
 
     public Member(String userName, String email, Status status) {

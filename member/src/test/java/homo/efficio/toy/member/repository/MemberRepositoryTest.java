@@ -2,7 +2,6 @@ package homo.efficio.toy.member.repository;
 
 import homo.efficio.toy.member.domain.Member;
 import homo.efficio.toy.member.exception.MemberNotFoundException;
-import org.hibernate.bytecode.buildtime.spi.ExecutionException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
