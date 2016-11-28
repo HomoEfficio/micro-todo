@@ -23,8 +23,10 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-}
 
+	// For ApiStubGenerator
+	flatDir(name: "project-libs", dirs: "libs")
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
@@ -32,6 +34,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-web')
+
+	// For ApiStubGenerator - start
+	compile files('libs/spring-web-api-test-stubber-1.0-SNAPSHOT.jar')
+	compile group: 'com.squareup', name: 'javapoet', version: '1.8.0'
+	compile group: 'junit', name: 'junit', version: '4.11'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.2.RELEASE'
+	// For ApiStubGenerator - end
+
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -42,3 +52,27 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR2"
 	}
 }
+
+// For ApiStubGenerator - start
+sourceSets {
+	generated {
+		java {
+			srcDirs = ['src/test/java']
+		}
+	}
+}
+
+task generateApiTestStub(type: JavaCompile, group: 'build') {
+	source = sourceSets.main.java.srcDirs
+	classpath = configurations.compile
+	options.compilerArgs = [
+	        "-proc:only",
+			"-processor", "homo.efficio.spring.web.api.test.stubber.processor.RestControllerProcessor"
+	]
+	destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+}
+
+compileJava {
+	dependsOn generateApiTestStub
+}
+// For ApiStubGenerator - end
