@@ -1,4 +1,4 @@
-package homo.efficio.toy.member;
+package homo.efficio.micro.todo.member;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

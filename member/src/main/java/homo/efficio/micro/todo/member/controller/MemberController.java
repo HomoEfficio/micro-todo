@@ -1,8 +1,8 @@
-package homo.efficio.toy.member.controller;
+package homo.efficio.micro.todo.member.controller;
 
-import homo.efficio.toy.member.dto.MemberDto;
-import homo.efficio.toy.member.exception.MemberNotFoundException;
-import homo.efficio.toy.member.service.MemberService;
+import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
+import homo.efficio.micro.todo.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;

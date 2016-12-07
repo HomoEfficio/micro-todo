@@ -1,6 +1,6 @@
-package homo.efficio.toy.member.repository;
+package homo.efficio.micro.todo.member.repository;
 
-import homo.efficio.toy.member.domain.Member;
+import homo.efficio.micro.todo.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

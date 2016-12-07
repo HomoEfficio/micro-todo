@@ -1,10 +1,10 @@
-package homo.efficio.toy.member.service;
+package homo.efficio.micro.todo.member.service;
 
-import homo.efficio.toy.member.domain.Member;
-import homo.efficio.toy.member.dto.MemberConverter;
-import homo.efficio.toy.member.dto.MemberDto;
-import homo.efficio.toy.member.exception.MemberNotFoundException;
-import homo.efficio.toy.member.repository.MemberRepository;
+import homo.efficio.micro.todo.member.domain.Member;
+import homo.efficio.micro.todo.member.dto.MemberConverter;
+import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
+import homo.efficio.micro.todo.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

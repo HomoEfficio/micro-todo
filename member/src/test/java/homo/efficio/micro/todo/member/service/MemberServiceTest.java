@@ -1,8 +1,7 @@
-package homo.efficio.toy.member.service;
+package homo.efficio.micro.todo.member.service;
 
-import homo.efficio.toy.member.dto.MemberDto;
-import homo.efficio.toy.member.exception.MemberNotFoundException;
-import homo.efficio.toy.member.repository.MemberRepository;
+import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

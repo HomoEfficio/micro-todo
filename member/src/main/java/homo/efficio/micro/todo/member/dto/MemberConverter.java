@@ -1,7 +1,7 @@
-package homo.efficio.toy.member.dto;
+package homo.efficio.micro.todo.member.dto;
 
-import homo.efficio.toy.member.domain.Member;
-import homo.efficio.toy.member.exception.MemberNotFoundException;
+import homo.efficio.micro.todo.member.domain.Member;
+import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

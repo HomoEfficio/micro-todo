@@ -1,6 +1,6 @@
-package homo.efficio.toy.member.service;
+package homo.efficio.micro.todo.member.service;
 
-import homo.efficio.toy.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.dto.MemberDto;
 import org.springframework.transaction.annotation.Transactional;
 
 /**

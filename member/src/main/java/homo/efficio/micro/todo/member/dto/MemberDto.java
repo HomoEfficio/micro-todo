@@ -1,6 +1,6 @@
-package homo.efficio.toy.member.dto;
+package homo.efficio.micro.todo.member.dto;
 
-import homo.efficio.toy.member.etc.code.Status;
+import homo.efficio.micro.todo.member.etc.code.Status;
 
 /**
  * Created by hanmomhanda on 2016-11-13.

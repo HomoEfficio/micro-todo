@@ -1,4 +1,4 @@
-package homo.efficio.toy.member.domain;
+package homo.efficio.micro.todo.member.domain;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

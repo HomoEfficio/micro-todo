@@ -1,7 +1,7 @@
-package homo.efficio.toy.member.controller;
+package homo.efficio.micro.todo.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import homo.efficio.toy.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.dto.MemberDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

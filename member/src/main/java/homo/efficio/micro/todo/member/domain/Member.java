@@ -1,6 +1,6 @@
-package homo.efficio.toy.member.domain;
+package homo.efficio.micro.todo.member.domain;
 
-import homo.efficio.toy.member.etc.code.Status;
+import homo.efficio.micro.todo.member.etc.code.Status;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
