@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -41,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Member> optMember = repository.findByUserName(userName);
 
-        Member member = optMember.orElseThrow(() -> new MemberNotFoundException());
+        Member member = optMember.orElseThrow(MemberNotFoundException::new);
 
         return converter.getMemberDtoFrom(member);
     }
@@ -52,9 +53,20 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Member> optMember = repository.findByEmail(email);
 
-        Member member = optMember.orElseThrow(() -> new MemberNotFoundException());
+        Member member = optMember.orElseThrow(MemberNotFoundException::new);
 
         return converter.getMemberDtoFrom(member);
+    }
+
+    @Override
+    @Transactional
+    public void delete(MemberDto memberDto) {
+
+        Optional<Member> optMember = repository.findByEmail(memberDto.getEmail());
+
+        Member member = optMember.orElseThrow(MemberNotFoundException::new);
+
+        repository.delete(member);
     }
 
     private MemberConverter converter;

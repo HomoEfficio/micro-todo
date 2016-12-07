@@ -4,7 +4,8 @@ import homo.efficio.toy.member.dto.MemberDto;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 public interface MemberService {
     MemberDto save(MemberDto memberDto);
@@ -14,4 +15,7 @@ public interface MemberService {
 
     @Transactional(readOnly = true)
     MemberDto findByEmail(String email);
+
+    @Transactional
+    void delete(MemberDto memberDto);
 }

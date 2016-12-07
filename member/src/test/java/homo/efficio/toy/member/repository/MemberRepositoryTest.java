@@ -14,14 +14,15 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class MemberRepositoryTest {
 
     @Autowired
-    MemberRepository repository;
+    private MemberRepository repository;
 
     private Member member;
     private String userName;
@@ -50,7 +51,7 @@ public class MemberRepositoryTest {
 
         Optional<Member> optPersistedMember = repository.findByEmail(member.getEmail());
 
-        Member persistedMember = optPersistedMember.orElseThrow(() -> new MemberNotFoundException());
+        Member persistedMember = optPersistedMember.orElseThrow(MemberNotFoundException::new);
 
         assertThat(persistedMember.getEmail()).isEqualTo(member.getEmail());
         assertThat(persistedMember.getUserName()).isEqualTo(member.getUserName());
@@ -63,7 +64,7 @@ public class MemberRepositoryTest {
 
         Optional<Member> optPersistedMember = repository.findByEmail("WRONG_EMAIL");
 
-        Member persistedMember = optPersistedMember.orElseThrow(() -> new MemberNotFoundException());
+        Member persistedMember = optPersistedMember.orElseThrow(MemberNotFoundException::new);
 
         assertThat(persistedMember.getEmail()).isEqualTo(member.getEmail());
         assertThat(persistedMember.getUserName()).isEqualTo(member.getUserName());
@@ -76,7 +77,7 @@ public class MemberRepositoryTest {
 
         Optional<Member> optPersistedMember = repository.findByUserName(member.getUserName());
 
-        Member persistedMember = optPersistedMember.orElseThrow(() -> new MemberNotFoundException());
+        Member persistedMember = optPersistedMember.orElseThrow(MemberNotFoundException::new);
 
         assertThat(persistedMember.getEmail()).isEqualTo(member.getEmail());
         assertThat(persistedMember.getUserName()).isEqualTo(member.getUserName());
@@ -89,9 +90,26 @@ public class MemberRepositoryTest {
 
         Optional<Member> optPersistedMember = repository.findByUserName("WRONG_USERNAME");
 
-        Member persistedMember = optPersistedMember.orElseThrow(() -> new MemberNotFoundException());
+        Member persistedMember = optPersistedMember.orElseThrow(MemberNotFoundException::new);
 
         assertThat(persistedMember.getEmail()).isEqualTo(member.getEmail());
         assertThat(persistedMember.getUserName()).isEqualTo(member.getUserName());
     }
+
+    @Test
+    public void 회원삭제() throws Exception {
+
+        repository.save(member);
+        repository.delete(member);
+    }
+
+//    @Test(expected = MemberNotFoundException.class)
+//    public void 존재하지_않는_회원삭제() throws Exception {
+//
+//        Member nonExistentMember = new Member("nonMember", "nonMember@no.member");
+//        repository.delete(nonExistentMember);
+//
+//        // 존재하지 않는 값을 삭제해도 DB에서는 아무런 에러를 반환하지 않으므로
+//        // JPA Repository에서도 아무 예외 발생하지 않는다
+//    }
 }

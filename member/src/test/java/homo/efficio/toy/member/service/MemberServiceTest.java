@@ -1,6 +1,7 @@
 package homo.efficio.toy.member.service;
 
 import homo.efficio.toy.member.dto.MemberDto;
+import homo.efficio.toy.member.exception.MemberNotFoundException;
 import homo.efficio.toy.member.repository.MemberRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -66,5 +67,27 @@ public class MemberServiceTest {
 
         assertThat(persistedMember.getEmail()).isEqualTo(memberDto.getEmail());
         assertThat(persistedMember.getUserName()).isEqualTo(memberDto.getUserName());
+    }
+
+    @Test
+    public void 회원삭제() throws Exception {
+
+        service.save(memberDto);
+
+        MemberDto persistedMember = service.findByUserName(userName);
+
+        assertThat(persistedMember.getEmail()).isEqualTo(memberDto.getEmail());
+        assertThat(persistedMember.getUserName()).isEqualTo(memberDto.getUserName());
+    }
+
+    @Test(expected = MemberNotFoundException.class)
+    public void 존재하지_않는_회원삭제() throws Exception {
+
+        MemberDto memberDto = new MemberDto();
+        memberDto.setId(-1L);
+        memberDto.setUserName("nonExist");
+        memberDto.setEmail("nonExist@non.exist");
+
+        service.delete(memberDto);
     }
 }
