@@ -19,7 +19,11 @@ import java.util.Objects;
 public class MemberController {
 
     @Autowired
-    MemberService memberService;
+    public MemberController(
+            MemberService memberService
+    ) {
+        this.memberService = memberService;
+    }
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
     public ResponseEntity<MemberDto> save(@RequestBody MemberDto memberDto,
@@ -45,4 +49,6 @@ public class MemberController {
 
         return ResponseEntity.ok(memberDto);
     }
+
+    private MemberService memberService;
 }

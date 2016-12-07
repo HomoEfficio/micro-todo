@@ -17,6 +17,14 @@ import java.util.Optional;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+    @Autowired
+    public MemberServiceImpl(
+            MemberRepository repository,
+             MemberConverter converter) {
+        this.repository = repository;
+        this.converter = converter;
+    }
+
     @Override
     @Transactional
     public MemberDto save(MemberDto memberDto) {
@@ -49,12 +57,7 @@ public class MemberServiceImpl implements MemberService {
         return converter.getMemberDtoFrom(member);
     }
 
-    @Autowired
-    MemberConverter converter;
+    private MemberConverter converter;
 
-    @Autowired
-    MemberRepository repository;
-
-    @Autowired
-    MemberService service;
+    private MemberRepository repository;
 }
