@@ -9,10 +9,12 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 @RestController
 @RequestMapping("/api/v1/members")
@@ -26,7 +28,7 @@ public class MemberController {
     }
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
-    public ResponseEntity<MemberDto> save(@RequestBody MemberDto memberDto,
+    public ResponseEntity<MemberDto> save(@RequestBody @Valid MemberDto memberDto,
                                           BindingResult bindingResult) throws BindException {
 
         if (bindingResult.hasErrors()) throw new BindException(bindingResult);

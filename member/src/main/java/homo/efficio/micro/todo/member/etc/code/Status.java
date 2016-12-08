@@ -1,7 +1,8 @@
 package homo.efficio.micro.todo.member.etc.code;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 public enum Status {
 

@@ -1,17 +1,25 @@
 package homo.efficio.micro.todo.member.dto;
 
 import homo.efficio.micro.todo.member.etc.code.Status;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 
 public class MemberDto {
 
     private Long id;
 
+    @NotNull
+    @Size(min = 8)
     private String userName;
 
+    @NotNull
     private String email;
 
     private Status status;
