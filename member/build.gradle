@@ -35,6 +35,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	// Swagger2
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
+
+
 	// For ApiStubGenerator - start
 	compile files('libs/spring-web-api-test-stubber-1.0-SNAPSHOT.jar')
 	compile group: 'com.squareup', name: 'javapoet', version: '1.8.0'
