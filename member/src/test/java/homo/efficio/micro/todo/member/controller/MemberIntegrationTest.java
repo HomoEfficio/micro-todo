@@ -3,6 +3,7 @@ package homo.efficio.micro.todo.member.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import homo.efficio.micro.todo.member.dto.MemberDto;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -80,8 +81,9 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
+    @Ignore
     @Test(expected = BindException.class)
-    public void 회원등록_userName_길이부족1() throws Exception {
+    public void 회원등록_userName_길이부족_잘못된사례1() throws Exception {
 
         MemberDto memberDto = getShortUserNameMemberDto();
 
@@ -95,8 +97,9 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
+    @Ignore
     @Test
-    public void 회원등록_userName_길이부족2() throws Exception {
+    public void 회원등록_userName_길이부족_잘못된사례2() throws Exception {
 
         thrown.expect(BindException.class);
 
