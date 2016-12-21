@@ -21,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -34,10 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *         created on 2016-11-13.
  */
 @RunWith(SpringRunner.class)
-//@ComponentScan(basePackages = {
-//        "homo.efficio.micro.todo.member.service",
-//        "homo.efficio.micro.todo.member.dto"
-//})
 @SpringBootTest
 public class MemberIntegrationTest {
 
@@ -129,10 +126,12 @@ public class MemberIntegrationTest {
                                 .content(memberDtoJson))
                 .andExpect(
 //                        (rslt) -> assertTrue(rslt.getResolvedException().getClass().isAssignableFrom(BindException.class))
-                        (rslt) -> assertEquals(
-                                rslt.getResolvedException().getClass().getCanonicalName(),
-                                BindException.class.getCanonicalName()
-                        )
+//                        (rslt) -> assertEquals(
+//                                rslt.getResolvedException().getClass().getCanonicalName(),
+//                                BindException.class.getCanonicalName()
+//                        )
+                        (rslt) -> assertThat(rslt.getResolvedException().getClass().getCanonicalName())
+                                .isEqualTo(BindException.class.getCanonicalName())
                 )
                 .andReturn();
     }

@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     public MemberServiceImpl(
             MemberRepository repository,
-             MemberConverter converter) {
+            MemberConverter converter) {
         this.repository = repository;
         this.converter = converter;
     }
