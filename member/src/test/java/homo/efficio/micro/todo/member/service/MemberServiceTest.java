@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MemberServiceTest {
 
     @Autowired
-    MemberService service;
+    private MemberService service;
 
     private MemberDto memberDto;
     private String userName;
