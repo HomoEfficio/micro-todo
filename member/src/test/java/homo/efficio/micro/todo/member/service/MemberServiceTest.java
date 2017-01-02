@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+@Transactional  // 테스트 클래스에 @Transactional 붙여주면 테스트 용으로 insert 후 자동으로 rollback 해줌
 public class MemberServiceTest {
 
     @Autowired
