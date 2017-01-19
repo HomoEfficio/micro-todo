@@ -16,6 +16,7 @@ import java.util.Optional;
  *         created on 2016-11-13.
  */
 @Service
+@Transactional
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
@@ -27,7 +28,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    @Transactional
     public MemberDto save(MemberDto memberDto) {
 
         Member member = converter.getMemberFrom(memberDto);
@@ -59,7 +59,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    @Transactional
     public void delete(MemberDto memberDto) {
 
         Optional<Member> optMember = repository.findByEmail(memberDto.getEmail());
