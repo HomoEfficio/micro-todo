@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -66,6 +67,12 @@ public class MemberServiceImpl implements MemberService {
         Member member = optMember.orElseThrow(MemberNotFoundException::new);
 
         repository.delete(member);
+    }
+
+    @Override
+    public List<MemberDto> findAll() {
+        List<Member> all = repository.findAll();
+        return converter.getMemberDtosFrom(all);
     }
 
     private MemberConverter converter;

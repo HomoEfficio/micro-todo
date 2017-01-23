@@ -4,10 +4,14 @@ import homo.efficio.micro.todo.member.domain.Member;
 import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2017-11-13.
  */
 @Component
 public class MemberConverter {
@@ -32,5 +36,17 @@ public class MemberConverter {
         o.setEmail(i.getEmail());
         o.setStatus(i.getStatus());
         return o;
+    }
+
+    public List<MemberDto> getMemberDtosFrom(List<Member> members) {
+
+        if (members.isEmpty())
+            return Collections.emptyList();
+
+        List<MemberDto> memberDtos = new ArrayList<>();
+        for (Member i: members) {
+            memberDtos.add(getMemberDtoFrom(i));
+        }
+        return memberDtos;
     }
 }
