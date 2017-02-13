@@ -7,7 +7,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
  */
 @Entity
 public class Member extends BaseEntity implements Serializable {

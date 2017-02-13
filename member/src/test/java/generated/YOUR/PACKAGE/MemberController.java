@@ -20,6 +20,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-28.
+ */
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan(

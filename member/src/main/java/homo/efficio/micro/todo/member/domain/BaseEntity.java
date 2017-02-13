@@ -17,7 +17,8 @@ import static java.time.ZoneId.systemDefault;
 import static java.util.Objects.isNull;
 
 /**
- * Created by hanmomhanda on 2016-11-13.
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-17.
  */
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass

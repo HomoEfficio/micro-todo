@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
  * @author homo.efficio@gmail.com
  *         created on 2016-11-13.
  */
-
 public class MemberDto {
 
     private Long id;

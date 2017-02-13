@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/**
+ * @author homo.efficio@gmail.com
+ *         created on 2016-11-13.
+ */
 @EnableJpaAuditing
 @EntityScan(
 		basePackageClasses = {Jsr310JpaConverters.class},
