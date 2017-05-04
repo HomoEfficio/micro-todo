@@ -1,6 +1,8 @@
 package homo.efficio.micro.todo.member.repository;
 
 import homo.efficio.micro.todo.member.domain.Member;
+import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.etc.code.Status;
 import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -97,10 +100,32 @@ public class MemberRepositoryTest {
     }
 
     @Test
+    public void 회원목록조회_by_Status() throws Exception {
+
+        repository.save(member);
+        repository.save(new Member(
+                "hanmomhanda",
+                "hanmomhanda@gmail.com",
+                Status.INACTIVE
+        ));
+        repository.save(new Member(
+                "omwomw",
+                "omwomw@gmail.com",
+                Status.INACTIVE
+        ));
+
+        assertThat(repository.findByStatus(Status.ACTIVE).size()).isEqualTo(1);
+        assertThat(repository.findByStatus(Status.INACTIVE).size()).isEqualTo(2);
+        assertThat(repository.findByStatus(Status.WITHDRAWN).size()).isEqualTo(0);
+    }
+
+    @Test
     public void 회원삭제() throws Exception {
 
         repository.save(member);
         repository.delete(member);
+
+        assertThat(repository.findAll().size()).isEqualTo(0);
     }
 
 //    @Test(expected = MemberNotFoundException.class)
