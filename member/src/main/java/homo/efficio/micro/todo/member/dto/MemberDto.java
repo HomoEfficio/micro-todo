@@ -1,7 +1,6 @@
 package homo.efficio.micro.todo.member.dto;
 
 import homo.efficio.micro.todo.member.etc.code.Status;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +21,15 @@ public class MemberDto {
     private String email;
 
     private Status status;
+
+    public MemberDto() {
+    }
+
+    public MemberDto(String userName, String email, Status status) {
+        this.userName = userName;
+        this.email = email;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
