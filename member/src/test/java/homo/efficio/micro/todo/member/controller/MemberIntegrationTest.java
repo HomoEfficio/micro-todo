@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -78,7 +80,7 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
-    @Ignore
+//    @Ignore
     @Test(expected = BindException.class)
     public void 회원등록_userName_길이부족_잘못된사례1() throws Exception {
 
@@ -94,7 +96,7 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
-    @Ignore
+//    @Ignore
     @Test
     public void 회원등록_userName_길이부족_잘못된사례2() throws Exception {
 
@@ -133,6 +135,93 @@ public class MemberIntegrationTest {
                         (rslt) -> assertThat(rslt.getResolvedException().getClass().getCanonicalName())
                                 .isEqualTo(BindException.class.getCanonicalName())
                 )
+                .andReturn();
+    }
+
+    @Test
+    public void 회원조회_email() throws Exception {
+
+        String userName = "hanmomhanda";
+        String email = "hanmomhanda@gmail.com";
+        MemberDto memberDto = new MemberDto();
+        memberDto.setUserName(userName);
+        memberDto.setEmail(email);
+
+        String memberDtoJson = objectMapper.writeValueAsString(memberDto);
+
+        MvcResult result = mockMvc
+                .perform(
+                        post("/api/v1/members")
+                                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                                .content(memberDtoJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
+                .andReturn();
+
+        MvcResult result1 = mockMvc
+                .perform(get("/api/v1/members?email=" + email))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
+                .andReturn();
+    }
+
+    @Test
+    public void 회원조회_userName() throws Exception {
+
+        String userName = "hanmomhanda";
+        String email = "hanmomhanda@gmail.com";
+        MemberDto memberDto = new MemberDto();
+        memberDto.setUserName(userName);
+        memberDto.setEmail(email);
+
+        String memberDtoJson = objectMapper.writeValueAsString(memberDto);
+
+        MvcResult result = mockMvc
+                .perform(
+                        post("/api/v1/members")
+                                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                                .content(memberDtoJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
+                .andReturn();
+
+        MvcResult result1 = mockMvc
+                .perform(get("/api/v1/members?userName=" + userName))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
+                .andReturn();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 회원조회_noArg() throws Exception {
+
+        String userName = "hanmomhanda";
+        String email = "hanmomhanda@gmail.com";
+        MemberDto memberDto = new MemberDto();
+        memberDto.setUserName(userName);
+        memberDto.setEmail(email);
+
+        String memberDtoJson = objectMapper.writeValueAsString(memberDto);
+
+        MvcResult result = mockMvc
+                .perform(
+                        post("/api/v1/members")
+                                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                                .content(memberDtoJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
+                .andReturn();
+
+        MvcResult result1 = mockMvc
+                .perform(get("/api/v1/members"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName", is(userName)))
+                .andExpect(jsonPath("$.email", is(email)))
                 .andReturn();
     }
 
