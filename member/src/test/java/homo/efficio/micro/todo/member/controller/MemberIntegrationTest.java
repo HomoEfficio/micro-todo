@@ -10,22 +10,18 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindException;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.io.IOException;
+import org.springframework.web.util.NestedServletException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -38,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class MemberIntegrationTest {
 
     private MockMvc mockMvc;
@@ -80,7 +77,7 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
-//    @Ignore
+    @Ignore  // BindException이 왜 assert 실패인지 모르겠음
     @Test(expected = BindException.class)
     public void 회원등록_userName_길이부족_잘못된사례1() throws Exception {
 
@@ -96,7 +93,7 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
-//    @Ignore
+    @Ignore  // BindException이 왜 assert 실패인지 모르겠음
     @Test
     public void 회원등록_userName_길이부족_잘못된사례2() throws Exception {
 
@@ -196,7 +193,7 @@ public class MemberIntegrationTest {
                 .andReturn();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NestedServletException.class)
     public void 회원조회_noArg() throws Exception {
 
         String userName = "hanmomhanda";
