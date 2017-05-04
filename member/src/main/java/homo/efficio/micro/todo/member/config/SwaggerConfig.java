@@ -9,6 +9,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ * SwaggerUI
+ * http://localhost:8080/your-app-root/swagger-ui.html
+ *
  * @author homo.efficio@gmail.com
  *         create on 2016-12-22.
  */
