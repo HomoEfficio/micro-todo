@@ -27,11 +27,12 @@ public class MemberConverter {
 
         if (Objects.isNull(i)) throw new MemberNotFoundException();
 
-        MemberDto o = new MemberDto();
-        o.setId(i.getId());
-        o.setUserName(i.getUserName());
-        o.setEmail(i.getEmail());
-        o.setStatus(i.getStatus());
+        MemberDto o = new MemberDto(
+            i.getId(),
+            i.getUserName(),
+            i.getEmail(),
+            i.getStatus()
+        );
         return o;
     }
 }

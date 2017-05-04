@@ -31,6 +31,13 @@ public class MemberDto {
         this.status = status;
     }
 
+    public MemberDto(Long id, String userName, String email, Status status) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }
