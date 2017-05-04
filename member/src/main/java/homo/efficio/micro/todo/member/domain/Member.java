@@ -18,9 +18,11 @@ public class Member extends BaseEntity implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(unique = true)  // 새 테이블 생성할 때만 효과, 기존 테이블에는 효과 없음
     private String userName;
 
     @NotNull
+    @Column(unique = true)  // 새 테이블 생성할 때만 효과, 기존 테이블에는 효과 없음
     private String email;
 
     @Enumerated(EnumType.STRING)
