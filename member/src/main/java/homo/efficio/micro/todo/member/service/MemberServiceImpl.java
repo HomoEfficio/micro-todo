@@ -6,6 +6,7 @@ import homo.efficio.micro.todo.member.dto.MemberDto;
 import homo.efficio.micro.todo.member.etc.code.Status;
 import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import homo.efficio.micro.todo.member.repository.MemberRepository;
+import homo.efficio.micro.todo.member.util.ConverterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +33,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDto save(MemberDto memberDto) {
 
-        Member member = converter.getMemberFrom(memberDto);
+        Member member = this.converter.getMemberFrom(memberDto);
         Member persistedMember = repository.save(member);
 
-        return converter.getMemberDtoFrom(persistedMember);
+        return this.converter.getMemberDtoFrom(persistedMember);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = optMember.orElseThrow(MemberNotFoundException::new);
 
-        return converter.getMemberDtoFrom(member);
+        return this.converter.getMemberDtoFrom(member);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = optMember.orElseThrow(MemberNotFoundException::new);
 
-        return converter.getMemberDtoFrom(member);
+        return this.converter.getMemberDtoFrom(member);
     }
 
     @Override
@@ -73,14 +74,14 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberDto> findAll() {
         List<Member> all = repository.findAll();
-        return converter.getMemberDtosFrom(all);
+        return ConverterUtils.getDtosFrom(all, this.converter::getMemberDtoFrom);
     }
 
     @Override
     public List<MemberDto> findAllBy(Status status) {
 
         List<Member> allByStatus = repository.findByStatus(status);
-        return converter.getMemberDtosFrom(allByStatus);
+        return ConverterUtils.getDtosFrom(allByStatus, this.converter::getMemberDtoFrom);
     }
 
     private MemberConverter converter;
