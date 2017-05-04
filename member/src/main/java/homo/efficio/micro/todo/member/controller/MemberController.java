@@ -33,7 +33,7 @@ public class MemberController {
 
         if (bindingResult.hasErrors()) throw new BindException(bindingResult);
 
-        return ResponseEntity.ok(memberService.save(memberDto));
+        return ResponseEntity.ok(this.memberService.save(memberDto));
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -42,9 +42,9 @@ public class MemberController {
 
         MemberDto memberDto;
         if (Objects.nonNull(email)) {
-            memberDto = memberService.findByEmail(email);
+            memberDto = this.memberService.findByEmail(email);
         } else if (Objects.nonNull(userName)) {
-            memberDto = memberService.findByUserName(userName);
+            memberDto = this.memberService.findByUserName(userName);
         } else {
             throw new MemberNotFoundException();
         }
