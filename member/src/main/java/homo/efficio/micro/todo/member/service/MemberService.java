@@ -1,6 +1,7 @@
 package homo.efficio.micro.todo.member.service;
 
 import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.etc.code.Status;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public interface MemberService {
 
     @Transactional(readOnly = true)
     List<MemberDto> findAll();
+
+    @Transactional(readOnly = true)
+    List<MemberDto> findAllBy(Status status);
 }

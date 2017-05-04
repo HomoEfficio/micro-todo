@@ -32,10 +32,8 @@ public class MemberServiceTest {
     @Before
     public void setup() {
         this.memberDto = new MemberDto();
-        String userName = "homo.efficio";
-        String email = "homo.efficio@gmail.com";
-        this.memberDto.setUserName(userName);
-        this.memberDto.setEmail(email);
+        this.memberDto.setUserName("homo.efficio");
+        this.memberDto.setEmail("homo.efficio@gmail.com");
         this.memberDto.setStatus(Status.ACTIVE);
     }
 
@@ -84,6 +82,42 @@ public class MemberServiceTest {
         List<MemberDto> allMemberDtos = service.findAll();
 
         assertThat(allMemberDtos.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void Status별_회원조회() throws Exception {
+
+        service.save(this.memberDto);
+        MemberDto memberDto1 = new MemberDto(
+                "hanmomhanda",
+                "hanmomhanda@gmail.com",
+                Status.ACTIVE
+        );
+        service.save(memberDto1);
+        MemberDto memberDto2 = new MemberDto(
+                "onetouch",
+                "onetouch@gmail.com",
+                Status.INACTIVE
+        );
+        service.save(memberDto2);
+        MemberDto memberDto3 = new MemberDto(
+                "omwomw",
+                "omwomw@gmail.com",
+                Status.WITHDRAWN
+        );
+        service.save(memberDto3);
+
+        List<MemberDto> activeMembers = service.findAllBy(Status.ACTIVE);
+
+        assertThat(activeMembers.size()).isEqualTo(2);
+
+        List<MemberDto> inactiveMembers = service.findAllBy(Status.INACTIVE);
+
+        assertThat(inactiveMembers.size()).isEqualTo(1);
+
+        List<MemberDto> withdrawnMembers = service.findAllBy(Status.WITHDRAWN);
+
+        assertThat(withdrawnMembers.size()).isEqualTo(1);
 
     }
 

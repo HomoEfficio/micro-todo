@@ -3,6 +3,7 @@ package homo.efficio.micro.todo.member.service;
 import homo.efficio.micro.todo.member.domain.Member;
 import homo.efficio.micro.todo.member.dto.MemberConverter;
 import homo.efficio.micro.todo.member.dto.MemberDto;
+import homo.efficio.micro.todo.member.etc.code.Status;
 import homo.efficio.micro.todo.member.exception.MemberNotFoundException;
 import homo.efficio.micro.todo.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,13 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberDto> findAll() {
         List<Member> all = repository.findAll();
         return converter.getMemberDtosFrom(all);
+    }
+
+    @Override
+    public List<MemberDto> findAllBy(Status status) {
+
+        List<Member> allByStatus = repository.findByStatus(status);
+        return converter.getMemberDtosFrom(allByStatus);
     }
 
     private MemberConverter converter;

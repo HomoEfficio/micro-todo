@@ -1,6 +1,7 @@
 package homo.efficio.micro.todo.member.repository;
 
 import homo.efficio.micro.todo.member.domain.Member;
+import homo.efficio.micro.todo.member.etc.code.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByEmail(String email);
 
     List<Member> findAll();
+
+    List<Member> findByStatus(Status status);
 }
